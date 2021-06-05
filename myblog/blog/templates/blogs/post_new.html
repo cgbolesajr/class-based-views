@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/my_style.css' %}">
+{% include 'blogs/navbar.html' %}
+
+
+<div class="container">
+  {% if user.is_authenticated %}
+  <h2>New post</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  {% else %}
+  You are not logged in <a href="{% url 'login' %}">login</a>
+  {% endif %}
+
+</div>
